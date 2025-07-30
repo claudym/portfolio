@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
+
+# GitHub linguist: treat JSON flows as source
+*.json linguist-detectable=true

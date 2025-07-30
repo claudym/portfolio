@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check repo hygiene
+        run: |
+          test -f README.md
+          test -f LICENSE
+      - name: Validate Markdown links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --exclude-mail --accept 200,429,999 "**/*.md"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
